@@ -25,7 +25,7 @@ class Carro {
 //DEFINO ARRAY DE PRODUCTOS//
 
 const productos = []
-productos.push(new Producto("1", "boca", "camiseta", "L", "2", "6000"))
+productos.push(new Producto("1", "Boca", "Camiseta", "L", "2", "6000"))
 productos.push(new Producto("2", "River", "Camiseta", "L", "2", "5000"))
 productos.push(new Producto("3", "Boca", "Short", "L", "2", "3000"))
 productos.push(new Producto("4", "River", "Short", "M", "5", "2000"))
