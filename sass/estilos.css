@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.navbar {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.navbar .navbar-brand {
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+/* .message{
+   background-color: green;
+   color: white;
+} */
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+#myBtn {
+  background-color: rgba(0, 128, 0, 0.556);
+  font-size: 25px;
+  text-transform: uppercase;
+  border: 4px solid black;
+  padding: 5px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+.modal-content .modalTitulo {
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+}
+
+/* #items{
+   border-top: 1px solid black;
+   border-bottom: 1px solid black;
+   padding: 5px;
+ } */
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.main__title {
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 150px;
+  margin-top: 150px;
+}
+
+.card-body .card-title {
+  text-align: center;
+}
+
+.card-body .card-text {
+  text-align: center;
+}
+
+.card-body .addCartBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#qty {
+  margin-bottom: 10px;
+}
+
+.footer__style {
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 128, 0, 0.809);
+  color: white;
+  text-align: center;
+  padding: 40px;
+  text-transform: uppercase;
+}
+/*# sourceMappingURL=estilos.css.map */
