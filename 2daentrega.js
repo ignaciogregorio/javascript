@@ -53,6 +53,14 @@ function cargarProductos(){
                                 <br>`;
             products.appendChild(cargaProductos);
         }
+    $("img").hover(
+        function(){
+            $(this).css({
+                transform: "scale(1.1,1.1)",
+                transition: "3s"}, 2000)
+            }
+    )
+    
 }
 cargarProductos()
 
@@ -86,8 +94,20 @@ function crearCarrito(myId){
     mensaje("Producto Agregado a Carrito","success")
     console.log(cart)
 
-    //dom de carrito//
-    const items = document.getElementById("items")
+    //dom de carrito con JQUERY//
+    $("#items").append(`<div id="${productoAgregado.sku}">
+    <h5 class="card-title "> Ha Comprado: ${productoAgregado.categoria} ${productoAgregado.nombre}</h5>
+    <p class="card-text mb-5"> Precio: ${productoAgregado.precio}</p>
+    <button id="id${productoAgregado.sku}"> Eliminar X </button>
+    </div>`)
+
+    $(`#id${productoAgregado.sku}`).click(()=>{
+        $(`#${productoAgregado.sku}`).slideUp("slow")
+        mensaje("Producto Eliminado", "danger")
+    })
+
+
+   /*  const items = document.getElementById("items")
     const carrito = document.createElement("div")
     carrito.className = "itemCarrito"
     carrito.innerHTML = `<h5 class="card-title "> Ha Comprado: ${productoAgregado.categoria} ${productoAgregado.nombre}</h5>
@@ -95,18 +115,18 @@ function crearCarrito(myId){
 
     //boton para borrar productos del carrito//
     const eliminarItem = document.createElement('button')
-    eliminarItem.innerHTML = `<button> Eliminar X </button>`
+    eliminarItem.innerHTML = `<button id="id${productoAgregado.sku}"> Eliminar X </button>` */
+/* 
     eliminarItem.onclick = ()=>{
-        mensaje("producto eliminado","danger")
-        guardarLocalStorage()
         items.removeChild(carrito)
         items.removeChild(eliminarItem)
     }
-    guardarLocalStorage()
+    
     //Agrego todo por DOM//
     items.appendChild(carrito);
-    items.appendChild(eliminarItem)
+    items.appendChild(eliminarItem) */
 
+    guardarLocalStorage()
 }
 
 //FUNCION PARA GUARDAR CARRO EN LOCAL STORAGE//
@@ -115,29 +135,24 @@ function guardarLocalStorage(){
     localStorage.setItem("cart",JSON.stringify(cart))
 }
 
+
+
 //FUNCION PARA RECUPERAR CARRO //
 
 function cargarLocalStorage(){
     if(localStorage.getItem("cart")!== null)
     cart = JSON.parse(localStorage.getItem("cart"))
     for (const prod of cart){
-        const items = document.getElementById("items")
-        const carrito = document.createElement("div")
-        carrito.className = "itemCarrito"
-        carrito.innerHTML = `<h5 class="card-title "> Ha Comprado: ${prod.categoria} ${prod.nombre}</h5>
-        <p class="card-text mb-5"> Precio: ${prod.precio}</p>`
-        const eliminarItem = document.createElement('button')
-        eliminarItem.innerHTML = `<button> Eliminar X </button>`
-        eliminarItem.onclick = ()=>{
-            guardarLocalStorage()
-            items.removeChild(carrito)
-            items.removeChild(eliminarItem)
-        }
-        guardarLocalStorage()
-        //Agrego todo por DOM//
-        items.appendChild(carrito);
-        items.appendChild(eliminarItem)
-    }
+        $("#items").append(`<div id="${prod.sku}">
+        <h5 class="card-title "> Ha Comprado: ${prod.categoria} ${prod.nombre}</h5>
+        <p class="card-text mb-5"> Precio: ${prod.precio}</p>
+        <button id="id${prod.sku}"> Eliminar X </button>
+        </div>`)
+    
+        $(`#id${prod.sku}`).click(()=>{
+            $(`#${prod.sku}`).slideUp("slow")
+        })
+}
 }
 cargarLocalStorage()
 
@@ -170,5 +185,4 @@ clean.onclick = function(){
     items.textContent = "";
     localStorage.clear()
 }
-
 
