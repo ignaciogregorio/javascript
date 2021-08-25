@@ -7,6 +7,7 @@ class Producto {
         this.cantidad = cantidad;
         this.precio  = parseFloat(precio);
         this.img = "img/" + this.nombre+this.categoria + ".jpg"
+        this.img2 = "img/" + this.nombre+this.categoria + "2" + ".jpg"
     }
 
 }
@@ -16,6 +17,7 @@ class Carro {
         this.categoria  = categoria;
         this.nombre  = nombre;
         this.precio  = parseFloat(precio);
+
 
     }
 
@@ -42,40 +44,60 @@ function cargarProductos(){
         for (const producto of productos){
             const cargaProductos = document.createElement("div");
             cargaProductos.className = "col-lg-4 col-md-6 col-xs-12 d-flex justify-content-center mb-5"
-            cargaProductos.innerHTML = `<div class="card d-fle" style="width: 18rem;">
-                                            <img src="${producto.img}" class="card-img-top" alt="...">
+            cargaProductos.innerHTML = `<div class="card d-fle cardProducto" style="width: 18rem;">
+                                            <img src="${producto.img}" class="card-img-top imgProducto" alt="...">
+                                            <img src="${producto.img2}" style="display:none" class="card-img-top imgProducto2" alt="...">
                                             <div class="card-body">
                                                 <h5 class="card-title ">${producto.categoria} ${producto.nombre}</h5>
-                                                <p class="card-text">$${producto.precio}</p>
+                                                <button class="btn btn-primary  btnTalles${producto.sku}">Talles Disponibles</button>
+                                                <div class="btn-group " id="divTalles${producto.sku}" style="display:none" >
+                                                    <select class="form-select" >
+                                                        <option selected>Seleccione el talle</option>
+                                                        <option value="1">S</option>
+                                                        <option value="2">M</option>
+                                                        <option value="3">L</option>
+                                                        <option value="4">XL</option>
+                                                    </select>
+                                                </div>
+                                                <p class="card-text mt-3">$${producto.precio}</p>
                                                 <a href="#" class="btn btn-primary addCartBtn" onclick="crearCarrito(${producto.sku})">Agregar a Carrito</a>
                                             </div>
                                         </div>
                                 <br>`;
-            products.appendChild(cargaProductos);
+                                products.appendChild(cargaProductos);
+                                $(`.btnTalles${producto.sku}`).click(()=>{
+                                    $(`#divTalles${producto.sku}`).toggle('slow')
+                                })
         }
-    $("img").hover(
-        function(){
-            $(this).css({
-                transform: "scale(1.1,1.1)",
-                transition: "3s"}, 2000)
-            }
-    )
-    
 }
 cargarProductos()
 
+
+//le doy estilo a las imagenes del DOM//
+
+$(".cardProducto").hover(
+    function(){
+        $(this).css({
+            "border":"5px solid green",
+            "transform": "scale(0.99)",
+        })
+    },
+    function(){
+        $(this).css({
+            "transform": "scale(1)",
+            "border":"none",
+        })
+    }   
+)
 
 // FUNCION PARA AGREGAR ITEMS AL CARRITO//
 
 let cart = []
 
 function crearCarrito(myId){
-
     let productoAgregado = []
     productoAgregado = productos.find(productos => productos.sku == myId)
-
     //pusheo los items al array de cart//
-
     cart.push(new Carro (productoAgregado.sku, productoAgregado.categoria, productoAgregado.nombre, productoAgregado.precio))
 
     // funcion muestra mensaje ok//
@@ -95,37 +117,43 @@ function crearCarrito(myId){
     console.log(cart)
 
     //dom de carrito con JQUERY//
-    $("#items").append(`<div id="${productoAgregado.sku}">
-    <h5 class="card-title "> Ha Comprado: ${productoAgregado.categoria} ${productoAgregado.nombre}</h5>
-    <p class="card-text mb-5"> Precio: ${productoAgregado.precio}</p>
-    <button id="id${productoAgregado.sku}"> Eliminar X </button>
+    $("#items").append(`<div id="${productoAgregado.sku}" class="container contenedorCarrito">
+    <h5 class="card-title  "> Ha Comprado: ${productoAgregado.categoria} ${productoAgregado.nombre}</h5>
+    <p class="card-text mb-5"> Precio: $${productoAgregado.precio}</p>
+    <button id="id${productoAgregado.sku}" class="btnEliminar"> Eliminar X </button>
     </div>`)
 
-    $(`#id${productoAgregado.sku}`).click(()=>{
-        $(`#${productoAgregado.sku}`).slideUp("slow")
-        mensaje("Producto Eliminado", "danger")
-    })
-
-
-   /*  const items = document.getElementById("items")
-    const carrito = document.createElement("div")
-    carrito.className = "itemCarrito"
-    carrito.innerHTML = `<h5 class="card-title "> Ha Comprado: ${productoAgregado.categoria} ${productoAgregado.nombre}</h5>
-    <p class="card-text mb-5"> Precio: ${productoAgregado.precio}</p>`
-
-    //boton para borrar productos del carrito//
-    const eliminarItem = document.createElement('button')
-    eliminarItem.innerHTML = `<button id="id${productoAgregado.sku}"> Eliminar X </button>` */
-/* 
-    eliminarItem.onclick = ()=>{
-        items.removeChild(carrito)
-        items.removeChild(eliminarItem)
-    }
+        $(`#id${productoAgregado.sku}`).click(()=>{
+            $(`#${productoAgregado.sku}`).slideUp("slow")
+            mensaje("Producto Eliminado", "danger")
+        })
     
-    //Agrego todo por DOM//
-    items.appendChild(carrito);
-    items.appendChild(eliminarItem) */
 
+//aplico estilos al carrito//
+
+$(".contenedorCarrito").css({
+    "border-bottom": "1px solid black",
+    "margin-bottom":"20px",
+}
+)
+
+$(".btnEliminar").css({
+    "color": "black",
+    "background-color": "white",
+    "border": "1px solid black",
+    "padding":"5px",
+    "margin-bottom":"20px",
+    "text-transform": "uppercase"
+})
+
+$(".btnEliminar").hover(function(){
+    $(this).css({"background-color":"black",
+    "color":"white"})},
+    function(){
+        $(this).css({"background-color":"white",
+        "color":"black",})
+    }
+    )
     guardarLocalStorage()
 }
 
@@ -143,18 +171,46 @@ function cargarLocalStorage(){
     if(localStorage.getItem("cart")!== null)
     cart = JSON.parse(localStorage.getItem("cart"))
     for (const prod of cart){
-        $("#items").append(`<div id="${prod.sku}">
-        <h5 class="card-title "> Ha Comprado: ${prod.categoria} ${prod.nombre}</h5>
-        <p class="card-text mb-5"> Precio: ${prod.precio}</p>
-        <button id="id${prod.sku}"> Eliminar X </button>
-        </div>`)
-    
-        $(`#id${prod.sku}`).click(()=>{
-            $(`#${prod.sku}`).slideUp("slow")
-        })
+        $("#items").append(`<div id="${prod.sku}" class="container contenedorCarrito">
+    <h5 class="card-title  "> Ha Comprado: ${prod.categoria} ${prod.nombre}</h5>
+    <p class="card-text mb-5"> Precio: $${prod.precio}</p>
+    <button id="id${prod.sku}" class="btnEliminar"> Eliminar X </button>
+    </div>`)
+
+    $(`#id${prod.sku}`).click(()=>{
+        $(`#${prod.sku}`).slideUp("slow")
+        mensaje("Producto Eliminado", "danger")
+    })
+
+//aplico estilos al carrito//
+
+$(".contenedorCarrito").css({
+    "border-bottom": "1px solid black",
+    "margin-bottom":"20px",
+}
+)
+
+$(".btnEliminar").css({
+    "color": "black",
+    "background-color": "white",
+    "border": "1px solid black",
+    "padding":"5px",
+    "margin-bottom":"20px",
+    "text-transform": "uppercase"
+})
+
+$(".btnEliminar").hover(function(){
+    $(this).css({"background-color":"black",
+    "color":"white"})},
+    function(){
+        $(this).css({"background-color":"white",
+        "color":"black",})
+    }
+    )
 }
 }
 cargarLocalStorage()
+
 
 //FUNCION DEL MODAL(CARRITO)//
 
