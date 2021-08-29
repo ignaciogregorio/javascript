@@ -1,0 +1,65 @@
+[
+{
+    "sku": 1,
+    "categoria": "boca",
+    "nombre":"camiseta",
+    "talle":"L",
+    "cantidad": 10,
+    "precio": 5000,
+    "img": "img/camisetaboca.jpg",
+    "img2":"img/camisetaboca2.jpg"
+},
+{
+    "sku": 2,
+    "categoria": "river",
+    "nombre":"camiseta",
+    "talle":"L",
+    "cantidad": 10,
+    "precio": 6000,
+    "img": "img/camisetariver.jpg",
+    "img2":"img/rivercamiseta2.jpg"
+},
+{
+    "sku": 3,
+    "categoria": "boca",
+    "nombre":"short",
+    "talle":"L",
+    "cantidad": 10,
+    "precio": 4000,
+    "img": "img/shortboca.jpg",
+    "img2":"img/bocashort.jpg"
+},
+{
+    "sku": 4,
+    "categoria": "river",
+    "nombre":"short",
+    "talle":"L",
+    "cantidad": 10,
+    "precio": 3000,
+    "img": "img/shortriver.jpg",
+    "img2":"img/rivershort.jpg"
+},
+{
+    "sku": 5,
+    "categoria": "river",
+    "nombre":"campera",
+    "talle":"L",
+    "cantidad": 10,
+    "precio": 8000,
+    "img": "img/camperariver.jpg",
+    "img2":"img/rivercampera.jpg"
+},
+{
+    "sku": 6,
+    "categoria": "boca",
+    "nombre":"campera",
+    "talle":"L",
+    "cantidad": 10,
+    "precio": 8000,
+    "img": "img/camperaboca.jpg",
+    "img2":"img/bocacampera.jpg"
+}
+
+
+
+]

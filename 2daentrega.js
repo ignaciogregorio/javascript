@@ -17,6 +17,7 @@ class Carro {
         this.categoria  = categoria;
         this.nombre  = nombre;
         this.precio  = parseFloat(precio);
+        this.img = "img/" + this.nombre+this.categoria + ".jpg"
 
 
     }
@@ -35,17 +36,15 @@ productos.push(new Producto("5", "Boca", "Campera", "XL", "1", "8000"))
 productos.push(new Producto("6", "River", "Campera", "L", "5", "7000"))
 
 
-
 //CARGAR PRODUCTOS DEL ARRAY X DOM//
 
-function cargarProductos(){
 
-    const products = document.getElementById("products")
-        for (const producto of productos){
-            const cargaProductos = document.createElement("div");
-            cargaProductos.className = "col-lg-4 col-md-6 col-xs-12 d-flex justify-content-center mb-5"
-            cargaProductos.innerHTML = `<div class="card d-fle cardProducto" style="width: 18rem;">
-                                            <img src="${producto.img}" class="card-img-top imgProducto" alt="...">
+function cargarProductos(){
+    for (const producto of productos){
+
+                        $('#products').append(
+                                    `<div class="d-fle cardProducto " style="width: 18rem;">
+                                            <img src="${producto.img}" class="card-img-top imgProducto" width=100% alt="...">
                                             <img src="${producto.img2}" style="display:none" class="card-img-top imgProducto2" alt="...">
                                             <div class="card-body">
                                                 <h5 class="card-title ">${producto.categoria} ${producto.nombre}</h5>
@@ -62,17 +61,12 @@ function cargarProductos(){
                                                 <p class="card-text mt-3">$${producto.precio}</p>
                                                 <a href="#" class="btn btn-primary addCartBtn" onclick="crearCarrito(${producto.sku})">Agregar a Carrito</a>
                                             </div>
-                                        </div>
-                                <br>`;
-                                products.appendChild(cargaProductos);
-                                $(`.btnTalles${producto.sku}`).click(()=>{
-                                    $(`#divTalles${producto.sku}`).toggle('slow')
-                                })
-        }
-}
-cargarProductos()
+                                        </div>`
+                            )
 
-
+$(`.btnTalles${producto.sku}`).click(()=>{
+    $(`#divTalles${producto.sku}`).toggle('slow')
+})
 //le doy estilo a las imagenes del DOM//
 
 $(".cardProducto").hover(
@@ -87,8 +81,15 @@ $(".cardProducto").hover(
             "transform": "scale(1)",
             "border":"none",
         })
-    }   
+    }
+
 )
+
+}
+
+}
+cargarProductos()
+
 
 // FUNCION PARA AGREGAR ITEMS AL CARRITO//
 
@@ -97,8 +98,10 @@ let cart = []
 function crearCarrito(myId){
     let productoAgregado = []
     productoAgregado = productos.find(productos => productos.sku == myId)
+/* console.log(productoAgregado)
+console.log(cart) */
     //pusheo los items al array de cart//
-    cart.push(new Carro (productoAgregado.sku, productoAgregado.categoria, productoAgregado.nombre, productoAgregado.precio))
+    cart.push(new Carro (productoAgregado.sku, productoAgregado.categoria, productoAgregado.nombre, productoAgregado.precio, productoAgregado.img))
 
     // funcion muestra mensaje ok//
     function mensaje(message, bg){
@@ -114,20 +117,22 @@ function crearCarrito(myId){
         },2000 )
     }
     mensaje("Producto Agregado a Carrito","success")
-    console.log(cart)
 
     //dom de carrito con JQUERY//
-    $("#items").append(`<div id="${productoAgregado.sku}" class="container contenedorCarrito">
-    <h5 class="card-title  "> Ha Comprado: ${productoAgregado.categoria} ${productoAgregado.nombre}</h5>
-    <p class="card-text mb-5"> Precio: $${productoAgregado.precio}</p>
-    <button id="id${productoAgregado.sku}" class="btnEliminar"> Eliminar X </button>
-    </div>`)
-
+    $("#items").append(
+        `<tr class="container" id="${productoAgregado.sku}">
+          <td><img src="${productoAgregado.img}" height="50px" alt="..."></td>
+          <td>${productoAgregado.sku}</td>
+          <td>${productoAgregado.categoria} ${productoAgregado.nombre}</td>
+          <td>$${productoAgregado.precio}</td>
+          <td><button id="id${productoAgregado.sku}" class="btnEliminar"> Eliminar X </button></td>
+        </tr>
+        `
+    )
         $(`#id${productoAgregado.sku}`).click(()=>{
             $(`#${productoAgregado.sku}`).slideUp("slow")
             mensaje("Producto Eliminado", "danger")
         })
-    
 
 //aplico estilos al carrito//
 
@@ -157,6 +162,10 @@ $(".btnEliminar").hover(function(){
     guardarLocalStorage()
 }
 
+console.log(cart[0])
+console.log(cart)
+console.log(cart[0].sku)
+
 //FUNCION PARA GUARDAR CARRO EN LOCAL STORAGE//
 
 function guardarLocalStorage(){
@@ -171,42 +180,47 @@ function cargarLocalStorage(){
     if(localStorage.getItem("cart")!== null)
     cart = JSON.parse(localStorage.getItem("cart"))
     for (const prod of cart){
-        $("#items").append(`<div id="${prod.sku}" class="container contenedorCarrito">
-    <h5 class="card-title  "> Ha Comprado: ${prod.categoria} ${prod.nombre}</h5>
-    <p class="card-text mb-5"> Precio: $${prod.precio}</p>
-    <button id="id${prod.sku}" class="btnEliminar"> Eliminar X </button>
-    </div>`)
-
-    $(`#id${prod.sku}`).click(()=>{
-        $(`#${prod.sku}`).slideUp("slow")
-        mensaje("Producto Eliminado", "danger")
-    })
-
-//aplico estilos al carrito//
-
-$(".contenedorCarrito").css({
-    "border-bottom": "1px solid black",
-    "margin-bottom":"20px",
-}
-)
-
-$(".btnEliminar").css({
-    "color": "black",
-    "background-color": "white",
-    "border": "1px solid black",
-    "padding":"5px",
-    "margin-bottom":"20px",
-    "text-transform": "uppercase"
-})
-
-$(".btnEliminar").hover(function(){
-    $(this).css({"background-color":"black",
-    "color":"white"})},
-    function(){
-        $(this).css({"background-color":"white",
-        "color":"black",})
+        $("#items").append(
+            `<tr class="container" id="${prod.sku}">
+              <td><img src="${prod.img}" height="50px" alt="..."></td>
+              <td>${prod.sku}</td>
+              <td>${prod.categoria} ${prod.nombre}</td>
+              <td>$${prod.precio}</td>
+              <td><button id="id${prod.sku}" class="btnEliminar"> Eliminar X </button></td>
+            </tr>
+            `
+        )
+            $(`#id${prod.sku}`).click(()=>{
+                $(`#${prod.sku}`).slideUp("slow")
+                mensaje("Producto Eliminado", "danger")
+            })
+        
+    
+    //aplico estilos al carrito//
+    
+    $(".contenedorCarrito").css({
+        "border-bottom": "1px solid black",
+        "margin-bottom":"20px",
     }
     )
+    
+    $(".btnEliminar").css({
+        "color": "black",
+        "background-color": "white",
+        "border": "1px solid black",
+        "padding":"5px",
+        "margin-bottom":"20px",
+        "text-transform": "uppercase"
+    })
+    
+    $(".btnEliminar").hover(function(){
+        $(this).css({"background-color":"black",
+        "color":"white"})},
+        function(){
+            $(this).css({"background-color":"white",
+            "color":"black",})
+        }
+        )
 }
 }
 cargarLocalStorage()
