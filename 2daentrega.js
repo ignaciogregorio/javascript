@@ -162,9 +162,7 @@ $(".btnEliminar").hover(function(){
     guardarLocalStorage()
 }
 
-console.log(cart[0])
-console.log(cart)
-console.log(cart[0].sku)
+
 
 //FUNCION PARA GUARDAR CARRO EN LOCAL STORAGE//
 
