@@ -19,7 +19,7 @@
 <header>
   <nav class=" navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Ragnar Store</a>
+      <a class="navbar-brand" href="index.html">Ragnar Store</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,7 +45,11 @@
         </ul>
       </div>
       <!-- Trigger/Open The Modal -->
-      <button id="myBtn"> Mi Carrito</button>
+      <div id="myBtn" >
+        <img src="/img/cesta-de-la-compra.svg" alt="" height="30px">
+        <a> Ver Carrito</a> 
+        <div id="contador"></div> 
+      </div>
 
       <!-- The Modal -->
       <div id="myModal" class="modal ">
@@ -53,20 +57,25 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p class="modalTitulo">Productos Comprados:</p>
-          <table id= "items" class="container">
-            <tr>
-              <td><strong>Imagen</strong></td>
-              <td><strong>SKU</strong></td>
-              <td><strong>Nombre</strong></td>
-              <td><strong>Precio</strong></td>
-            </tr>
+            <p class="modalTitulo">Productos Comprados:</p>
+            <table id= "items" class="container col-8">
+              <tr>
+                <td><strong>Imagen</strong></td>
+                <td><strong>Cantidad</strong></td>
+                <td><strong>Nombre</strong></td>
+                <td><strong>Precio</strong></td>
+                <td><strong>Sub-total</strong></td>
+              </tr>
             </table>
-            <div class="d-grid gap-2 col-6 mx-auto mt-5 ">
-              <button id="clean">Vaciar Todo</button>
-              <button id="confirmar">Comprar</button>
-
+            <div id="totalCantidad">
             </div>
+            <div id="subtotal">
+            </div>
+              <div class="botonesModal d-grid gap-2 col-6 mx-auto mt-5 ">
+                <button id="clean">Vaciar Carrito</button>
+                <a href="pago.html" class="button" id="confirmar">Finalizar Compra</a>
+              </div>
+          </div>
         </div>
 
       </div>
@@ -75,13 +84,18 @@
 </header>
 <!-- FIN HEADER Y NAV -->
 
+
 <!-- INICIO TIENDA-->
 <section class="container-fluid">
   <div class="container prueba">
     <h1 class="main__title">BIENVENIDOS A NUESTRA TIENDA ONLINE</h1>
-    <div class="btnHome">
-      <button id="cargaProductos" class="btn btn-success">Conoce Nuestro Productos</button>
-<!--       <button id="vendeProductos" class="btn btn-success">Vende Tu Camiseta</button> -->
+    <div class="container">
+      <div class="row d-flex justify-content-around categorias">
+        <div  class="col-sm-12 col-md-3 futbolNacional">
+          <button class="futbolNacional__btn" value="1">Futbol</button></div>
+        <div  class="col-sm-12 col-md-3 basket"> <button class="basket__btn">Basket</button></div>
+        <div  class="col-sm-12 col-md-3 rugby"> <button class="rugby__btn">Rugby</button></div>
+      </div>
     </div>
   </div>
 
@@ -118,8 +132,9 @@
 <!-- FIN FOOTER-->
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="2daentrega.js"> </script>
 <script src="productos.json"> </script>
+<script type="module" src="main.js"> </script>
+
 
 </body>
 </html>
