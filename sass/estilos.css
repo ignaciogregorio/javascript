@@ -241,4 +241,92 @@
   padding: 40px;
   text-transform: uppercase;
 }
+
+#resumenCompra {
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+#resumenCompra #cuadroResumen {
+  text-align: center;
+  padding: 5px;
+  width: 500px;
+  background-color: rgba(128, 128, 128, 0.461);
+}
+
+#resumenCompra #cuadroResumen .resumen__titulo {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: green;
+}
+
+#resumenCompra #detallePago {
+  width: 500px;
+  text-transform: uppercase;
+}
+
+#resumenCompra .resumenTitulo {
+  text-align: center;
+}
+
+#resumenCompra .resumen__aviso {
+  text-align: right;
+  font-size: 10px;
+}
+
+#resumenCompra .correo__titulo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+#resumenCompra .form-control {
+  margin-bottom: 10px;
+}
+
+#resumenCompra .datosPersonales {
+  margin-top: 40px;
+}
+
+#resumenCompra .datosPersonales .errorFormulario {
+  color: red;
+  text-align: left;
+  font-size: 10px;
+}
+
+#resumenCompra .datosPersonales__titulo {
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+#resumenCompra .domicilio__titulo {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#resumenCompra .siguiente {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 /*# sourceMappingURL=estilos.css.map */

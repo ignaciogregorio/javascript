@@ -543,23 +543,27 @@ cargarLocalStorage()
 
 //FUNCION DEL MODAL(CARRITO)//
 
+
 let modal = document.getElementById("myModal");
 // Get the button that opens the modal
-let btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
-let clean = document.getElementById("clean")
-clean.className = "btn btn-dark"
 const items = document.getElementById("items")
 
 // When the user clicks on the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
-}
+$('#myBtn').click (()=>{
+    
+    $('#myModal').css({
+        "display" : "block",
+    })
+}) 
+
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
+$('.close').click(()=>{
+
+    $('#myModal').css({
+        "display" : "none",
+    })
+})
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
@@ -567,7 +571,8 @@ window.onclick = function (event) {
     }
 }
 //clean cart//
-clean.onclick = function () {
+$('#clean').click(()=>{
+
     items.textContent = "";
     $("#items").append(
         `<tr>
@@ -581,23 +586,15 @@ clean.onclick = function () {
         cart = []
 
     $("#subtotal").empty()
-    }
 
-
-
-    $("#detallePago").append(
-        `<tr>
-        <td><strong>Imagen</strong></td>
-        <td><strong>Cantidad</strong></td>
-        <td><strong>Nombre</strong></td>
-        <td><strong>Precio</strong></td>
-        </tr>`
-        )
+})
+$('#confirmar').click(()=>{
+    
     for (const prod of cart) {
         
         let subtotal1 = prod.cantidad * prod.precio
         $("#detallePago").append(
-            `<tr class="container" id="${prod.sku}">
+            `<tr class="container"">
               <td><img src="${prod.imgNombre}" height="50px" alt="..."></td>
               <td class="cantidad${prod.sku}"> ${prod.cantidad}</td>
               <td>${prod.nombre}</td>
@@ -606,6 +603,8 @@ clean.onclick = function () {
             `
     )
     }
-    
+
+
+})
 
 

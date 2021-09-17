@@ -44,14 +44,145 @@
           </li>
         </ul>
       </div>
+      
 </nav>
 </header>
 <!-- FIN HEADER Y NAV -->
-<div id="detallePago">
-
-
+<div id="resumenCompra" class="container">
+        <div class="row">
+                <div id="cuadroResumen" class="col-lg-2">
+                          <span class="resumen__titulo">Resumen de Compra</span> 
+                          <table id="detallePago">
+                                    <tr>
+                                              <td><strong>Imagen</strong></td>
+                                              <td><strong>Cantidad</strong></td>
+                                              <td><strong>Nombre</strong></td>
+                                              <td><strong>Precio</strong></td>
+                                    </tr>
+                          </table>
+                </div>
+                <form class="col-6">
+                        <div>
+                                <h1>DATOS PARA EL ENVIO</h1>
+                                <label for="correo" class="correo__titulo">Correo Electronico*</label>
+                                <input type="email" class="form-control" id="correo" required>
+                                <a class="btn btn-dark" id="correo__continuar">Continuar</a>
+                        </div>
+                </form>
+        </div>
+        <p class="resumen__aviso">Todos los campos con * son obligatorios</p>
+        <hr>
+        <form>
+                <div class="row datosPersonales col-md-10">
+                        <h2 class="datosPersonales__titulo">Datos Personales</h2>
+                        <div class="col-md-5">
+                                <label for="nombre">Nombre*</label>
+                                <input type="text" class="form-control" id="nombre">
+                                <p id="errorNombre" class="errorFormulario">*Completar el nombre</p>
+                        </div>
+                        <div class="form-group col-md-5">
+                                <label for="apellido">Apellido*</label>
+                                <input type="text" class="form-control" id="apellido">
+                                <p id="errorApellido" class="errorFormulario">*Completar el apellido</p>
+                        </div>
+                        <div class="col-md-5">
+                                <label for="dni">DNI*</label>
+                                <input type="text" class="form-control" id="dni" pattern="[0-9]{8}">
+                                <p id="errorDni" class="errorFormulario">*Completar el DNI</p>
+                        </div>
+                        <div class="form-group col-md-5">
+                                <label for="telefono">Telefono</label>
+                                <input type="tel" class="form-control" id="telefono" pattern="[0-9]">
+                        </div>
+                        <h5 class="domicilio__titulo">Domicilio*</h5>
+                        <div class="form-group col-md-10">
+                                <label for="direccion"></label>
+                                <input type="text" class="form-control" id="direccion" placeholder="Direccion" >
+                                <p id="errorDireccion" class="errorFormulario">*Completar Direccion</p>
+                        </div>
+                        <div class="form-group col-md-3">
+                                <label for="numero"></label>
+                                <input type="text" class="form-control" id="numero" placeholder="Numero">
+                        </div>
+                        <div class="form-group col-md-3">
+                                <label for="piso"></label>
+                                <input type="text" class="form-control" id="piso" placeholder="Piso" >
+                        </div>
+                        <div class="form-group col-md-3">
+                                <label for="departamento"></label>
+                                <input type="text" class="form-control" id="departamento" placeholder="Departamento" >
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label for="provincia">Provincia*</label>
+                                <select class="form-control" id="exampleFormControlSelect1" id="provincia" required> 
+                                        <option value="Selecciona la provincia." selected>Selecciona la provincia.</option>
+                                        <option value="Buenos Aires">Buenos Aires</option>
+                                        <option>Capital Federal</option>
+                                        <option>Catamarca</option>
+                                        <option>Chaco</option>
+                                        <option>Chubut</option>
+                                        <option>Cordoba</option>
+                                        <option>Corrientes</option>
+                                        <option>Entre Rios</option>
+                                        <option>Formosa</option>
+                                        <option>Jujuy</option>
+                                        <option>La Pampa</option>
+                                        <option>La Rioja</option>
+                                        <option>Mendoza</option>
+                                        <option>Misiones</option>
+                                        <option>Neuquen</option>
+                                        <option>Rio Negro</option>
+                                        <option>Salta</option>
+                                        <option>San Juan</option>
+                                        <option>San Luis</option>
+                                        <option>Santa Cruz</option>
+                                        <option>Santa Fe</option>
+                                        <option>Santiago del Estero</option>
+                                        <option>Tucuman</option>
+                                </select>
+                                <!-- <p id="errorProvincia" class="errorFormulario">*Completar Provincia</p> -->
+                        </div>
+                        <div class="form-group col-md-3" class ="ciudades">
+                                  <label for="ciudad"></label>
+                                  <input type="text" class="form-control" id="ciudad" placeholder="Ciudad">
+                                  <p id="errorCiudad" class="errorFormulario">*Completar Ciudad</p>
+                        </div>
+                        <button type="button" class="btn btn-primary siguiente">Continuar con el pago</button>
+                  </div>
+        </form>
+        <form>
+          <div class="formaPago col-md-10 row">
+                    <div class=" formaPago__titulo col-md-3">Seleccione la forma de pago
+                            <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="tranferencia" value="1">
+                                    <label class="form-check-label" for="tranferencia">
+                                      Tranferencia
+                                    </label>
+                            </div>
+                            <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="tarjetaCredito" value="2">
+                                    <label class="form-check-label" for="tarjetaCredito">
+                                      Tarjeta Credito
+                                    </label>
+                            </div>
+                            <div class="form-check disabled">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="efectivo" value="3" disabled>
+                                    <label class="form-check-label" for="efectivo">
+                                      Efectivo en Local
+                                    </label>
+                            </div>
+                  </div>
+                    <div class="col-md-5 datosTranferencia">
+                              <div>Datos de cuenta para tranferencias
+                                <p>CBU: 1111111</p>
+                                <p>Nombre Ragnar store SA</p>
+                                <p>Alias: RAGNAR.STORE.ROPA</p>
+                                <button class="btn btn-secondary tranferenciaOk">Tranferencia Realizada</button>
+                              </div>
+                    </div>
+          </div>
+        </form>
 </div>
-
 
 
 <!-- INICIO FOOTER-->
@@ -84,6 +215,7 @@
 <script src="productos.json"> </script>
 <script type="module" src="main.js"> </script>
 <script type="module" src="pago.js"> </script>
+
 
 
 </body>
