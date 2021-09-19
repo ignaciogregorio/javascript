@@ -23,27 +23,6 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Nosotros</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Tienda
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Mayorista</a></li>
-              <li><a class="dropdown-item" href="#">Minorista</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Outlet</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
       
 </nav>
 </header>
@@ -115,8 +94,8 @@
                         <div class="form-group col-md-6">
                                 <label for="provincia">Provincia*</label>
                                 <select class="form-control" id="exampleFormControlSelect1" id="provincia" required> 
-                                        <option value="Selecciona la provincia." selected>Selecciona la provincia.</option>
-                                        <option value="Buenos Aires">Buenos Aires</option>
+                                        <option selected>Selecciona la provincia.</option>
+                                        <option>Buenos Aires</option>
                                         <option>Capital Federal</option>
                                         <option>Catamarca</option>
                                         <option>Chaco</option>
@@ -180,6 +159,38 @@
                                 <button class="btn btn-secondary tranferenciaOk">Tranferencia Realizada</button>
                               </div>
                     </div>
+                    <form>
+                              <div class="col-md-7 pagoTarjeta row">
+                                        <div class="col-md-8">
+                                                  <label for="nroTarjeta">Numero Tarjeta</label>
+                                                  <input type="number" class="form-control" id="nroTarjeta" pattern="[0-9]{16}">
+                                                  <p id="errorNroTarjeta" class="errorFormulario">*Completar Numero Tarjeta</p>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                                  <label for="cvv">CVV</label>
+                                                  <input type="number" class="form-control" id="cvv" pattern="[0-9]{3}">
+                                                  <p id="errorCvv" class="errorFormulario">*Completar CVV</p>
+                                        </div>
+                                        <div class="form-group col-md-8">
+                                                  <label for="nombreTarjeta">Nombre Titular Tarjeta</label>
+                                                  <input type="text" class="form-control" id="nombreTarjeta">
+                                                  <p id="errorNombreTarjeta" class="errorFormulario">*Completar Nombre</p>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                                  <label for="vencimiento">Fecha Vto</label>
+                                                  <input type="number" class="form-control" id="vencimiento" pattern="[0-9]{4}"">
+                                                  <p id="errorVencimiento" class="errorFormulario">*Completar Vencimiento</p>
+                                        </div>
+                                        <div>
+                                          <img src="img/visa.jpg" alt="">
+                                          <img src="img/mastercard.jpg" alt="">
+                                          <img src="img/amex.jpg" alt="">
+                                        </div>
+                                        <a class="btn btn-secondary" id="tarjetaOk">Pagar</a>
+
+                              </div>
+                    </form>
+
           </div>
         </form>
 </div>
@@ -215,6 +226,7 @@
 <script src="productos.json"> </script>
 <script type="module" src="main.js"> </script>
 <script type="module" src="pago.js"> </script>
+
 
 
 

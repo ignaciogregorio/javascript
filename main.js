@@ -1,6 +1,6 @@
 import {Carro } from "./carro.js";
 import {Producto } from "./producto.js";
-import { mensaje, total, guardarLocalStorage, filtros, subtotal} from "./funciones.js";
+import { mensaje, total, guardarLocalStorage, subtotal} from "./funciones.js";
 
 
 // INICIO CARGA DOM X JSON 3 CATEGORIAS//
@@ -54,20 +54,20 @@ $(".futbolNacional__btn").click(() => {
                 misDatos = respuesta;
                 let categoria = ''
                 categoria = misDatos.filter(productos => productos.categoria == "futbol")
-                filtros()
                 for (const producto of categoria) {
                     $('#products').append(
                                                 `
-                                                <div class="d-fle cardProducto " style="width: 18rem;">
+                                                <div class=" cardProducto " style="width: 15rem;">
                                                         <img src="${producto.img}" class="card-img-top imgProducto" width=100% alt="...">
                                                         <img src="${producto.img2}" style="display:none" class="card-img-top imgProducto2" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title ">${producto.nombre}</h5>
-                                                            <p class="card-text mt-3">$${producto.precio}</p>
+                                                            <p class="card-text mt-2">$${producto.precio}</p>
                                                             <a href="#" class="btn btn-primary addCartBtn${producto.sku}" onclick="crearCarrito(${producto.sku})">Agregar a Carrito</a>
                                                         </div>
                                                 </div>`
                     )
+
                     //le doy estilo a las imagenes del DOM//
 
                     $(".cardProducto").hover(
@@ -136,7 +136,7 @@ $(".basket__btn").click(() => {
 
                 for (const producto of categoria) {
                     $('#products').append(
-                        `<div class="d-fle cardProducto " style="width: 18rem;">
+                        `<div class="d-fle cardProducto " style="width: 15rem;">
                                                         <img src="${producto.img}" class="card-img-top imgProducto" width=100% alt="...">
                                                         <img src="${producto.img2}" style="display:none" class="card-img-top imgProducto2" alt="...">
                                                         <div class="card-body">
@@ -214,7 +214,7 @@ $(".rugby__btn").click(() => {
  
                 for (const producto of categoria) {
                     $('#products').append(
-                        `<div class="d-fle cardProducto " style="width: 18rem;">
+                        `<div class="d-fle cardProducto " style="width: 15rem;">
                                                         <img src="${producto.img}" class="card-img-top imgProducto" width=100% alt="...">
                                                         <img src="${producto.img2}" style="display:none" class="card-img-top imgProducto2" alt="...">
                                                         <div class="card-body">
@@ -277,15 +277,28 @@ window.crearCarrito = function crearCarrito(myId) {
     mensaje("Producto Agregado a Carrito", "success")
     let subtotal1 = productoAgregado.cantidad * productoAgregado.precio
 
+    // CONTADOR DE ITEMS CARRITO//
+    $('#contador').empty()
+    $('#contador').append(
+        `${cart.length}`
+    )
+
 //GENERO DOM DEL CARRITO JQUERY//  
 
     $("#items").append(
-            `<tr class="container" id="${productoAgregado.sku}">
+            `<tr class="container col-12" id="${productoAgregado.sku}">
               <td><img src="${productoAgregado.img}" height="50px" alt="..."></td>
               <td class="cantidad${productoAgregado.sku}"> ${productoAgregado.cantidad}</td>
               <td>${productoAgregado.nombre}</td>
               <td>$${productoAgregado.precio}</td>
               <td class="subtotal${productoAgregado.sku}">$${subtotal1}</td>
+              <td><select class="form-control">
+                                        <option selected>Talle</option>
+                                        <option>S</option>
+                                        <option>M</option>
+                                        <option>L</option>
+                                        <option>XL</option>
+              </td>
               <td><button class="btnDisminuir${productoAgregado.sku} btn btn-danger"> - </button></td>
               <td><button class="btnAumentar${productoAgregado.sku} btn btn-success"> + </button></td>
               <td><button id="id${productoAgregado.sku}" class="btnEliminar"> Eliminar X </button></td>
@@ -299,7 +312,7 @@ window.crearCarrito = function crearCarrito(myId) {
     }else{
         $(`.btnDisminuir${productoAgregado.sku}`).prop('disabled', false)
     }
- 
+
     //AUMENTAR CANTIDADES//
 
     $(`.btnAumentar${productoAgregado.sku}`).click(()=>{
@@ -357,6 +370,7 @@ subtotal()
     //BOTON ELIMINAR//
 
 $(`#id${productoAgregado.sku}`).click(() => {
+
     $(`#${productoAgregado.sku}`).remove()
 
     cart.forEach((item, index) => {
@@ -364,13 +378,23 @@ $(`#id${productoAgregado.sku}`).click(() => {
         //el index te va a decir en que posicion esta
         if (item.sku == productoAgregado.sku) {
             cart.splice(index, 1)
+
+        }
+        $('#contador').empty()
+        $('#contador').append(
+            `${cart.length}`
+        )
+        if(cart.length == 0){
+            $('#confirmar').hide()
+        }else{
+            $('#confirmar').show()
         }
         guardarLocalStorage()
         subtotal()
+
     })
+
     mensaje("Producto Eliminado", "danger")
-
-
 
 
     })
@@ -406,16 +430,23 @@ $(`#id${productoAgregado.sku}`).click(() => {
         }
     )
     guardarLocalStorage()
+
+   //ESCONDO BOTON DE FINALIZAR SI CARRITO ESTA VACIO//
+
+    if(cart.length == 0){
+        $('#confirmar').hide()
+    }else{
+        $('#confirmar').show()
+    }
 }
+
 
 //FUNCION PARA RECUPERAR CARRO //
 
 function cargarLocalStorage() {
     if (localStorage.getItem("cart") !== null)
         cart = JSON.parse(localStorage.getItem("cart"))
-   
         for (const prod of cart) {
-        
         let subtotal1 = prod.cantidad * prod.precio
         $("#items").append(
             `<tr class="container" id="${prod.sku}">
@@ -424,11 +455,22 @@ function cargarLocalStorage() {
               <td>${prod.nombre}</td>
               <td>$${prod.precio}</td>
               <td class="subtotal${prod.sku}">$${subtotal1}</td>
+              <td><select class="form-control">
+                    <option selected>Talle</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+              </td>
               <td><button class="btnDisminuir${prod.sku} btn btn-danger"> - </button></td>
               <td><button class="btnAumentar${prod.sku} btn btn-success"> + </button></td>
               <td><button id="id${prod.sku}" class="btnEliminar"> Eliminar X </button></td>
             </tr>
             `
+    )
+    $('#contador').empty()
+    $('#contador').append(
+        `${cart.length}`
     )
     // BOTON DISMINUIR DESHABILITADO PARA EVITAR CANTIDADES MENORES A 0//
     if(prod.cantidad === 1 ){
@@ -490,18 +532,35 @@ function cargarLocalStorage() {
     })
     subtotal()
     //BOTON ELIMINAR//
-        $(`#id${prod.sku}`).click(() => {
+    $(`#id${prod.sku}`).click(() => {
 
-            cart.forEach((item, index) => {
+        $(`#${prod.sku}`).remove()
+    
+        cart.forEach((item, index) => {
+            //buscamos item por item , para ver mi el mio coincide con alguno de los que estan en el array cart
+            //el index te va a decir en que posicion esta
+            if (item.sku == prod.sku) {
+                cart.splice(index, 1)
+    
+            }
+            //ACTUALIZO CONTADOR//
+            $('#contador').empty()
+            $('#contador').append(
+                `${cart.length}`
+            )
+             //ESCONDO BOTON DE FINALIZAR SI CARRITO ESTA VACIO//
+            if(cart.length == 0){
+                $('#confirmar').hide()
+            }else{
+                $('#confirmar').show()
+            }
+            guardarLocalStorage()
+            subtotal()
 
-                if (item.sku == prod.sku) {
-                    cart.splice(index, 1)
-                }
-                guardarLocalStorage()
-            })
+        })
 
-            $(`#${prod.sku}`).remove()
-            mensaje("Producto Eliminado", "danger")
+        mensaje("Producto Eliminado", "danger")
+
 
         })
 
@@ -536,6 +595,7 @@ function cargarLocalStorage() {
             }
         )
     }
+
 }
 
 cargarLocalStorage()
@@ -545,18 +605,12 @@ cargarLocalStorage()
 
 
 let modal = document.getElementById("myModal");
-// Get the button that opens the modal
 const items = document.getElementById("items")
-
-// When the user clicks on the button, open the modal
 $('#myBtn').click (()=>{
-    
     $('#myModal').css({
         "display" : "block",
     })
-}) 
-
-// When the user clicks on <span> (x), close the modal
+})
 $('.close').click(()=>{
 
     $('#myModal').css({
@@ -564,13 +618,12 @@ $('.close').click(()=>{
     })
 })
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
-//clean cart//
+//BORRAR CARRITO//
 $('#clean').click(()=>{
 
     items.textContent = "";
@@ -580,31 +633,34 @@ $('#clean').click(()=>{
         <td><strong>Cantidad</strong></td>
         <td><strong>Nombre</strong></td>
         <td><strong>Precio</strong></td>
+        <td><strong>Sub-total</strong></td>
+        <td><strong>Talle</strong></td>
         </tr>`
         )
         localStorage.clear()
         cart = []
 
+        // VACIO CONTADOR//
+        $('#contador').empty()
+        $('#contador').append(
+            `${cart.length}`
+        )
+        //ELIMINO BOTON POR CARRITO VACIO//
+        if(cart.length == 0){
+            $('#confirmar').hide()
+        }else{
+            $('#confirmar').show()
+        }
     $("#subtotal").empty()
 
 })
-$('#confirmar').click(()=>{
-    
-    for (const prod of cart) {
-        
-        let subtotal1 = prod.cantidad * prod.precio
-        $("#detallePago").append(
-            `<tr class="container"">
-              <td><img src="${prod.imgNombre}" height="50px" alt="..."></td>
-              <td class="cantidad${prod.sku}"> ${prod.cantidad}</td>
-              <td>${prod.nombre}</td>
-              <td class="subtotal${prod.sku}">$${subtotal1}</td>
-            </tr>
-            `
-    )
-    }
 
+ //ESCONDO BOTON DE FINALIZAR SI CARRITO ESTA VACIO//
 
-})
+if(cart.length == 0){
+    $('#confirmar').hide()
+}else{
+    $('#confirmar').show()
+}
 
 

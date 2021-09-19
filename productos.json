@@ -3,7 +3,6 @@
     "sku": 1,
     "categoria": "futbol",
     "nombre":"Camiseta Boca Juniors",
-    "talle":"L",
     "cantidad": 1,
     "precio": 5000,
     "img": "img/camisetaboca.jpg"
@@ -13,7 +12,6 @@
     "sku": 2,
     "categoria": "futbol",
     "nombre":"Camiseta River Plate",
-    "talle":"L",
     "cantidad": 1,
     "precio": 6000,
     "img": "img/camisetariver.jpg"
@@ -23,7 +21,6 @@
     "sku": 3,
     "categoria": "futbol",
     "nombre":"Short Boca Juniors",
-    "talle":"L",
     "cantidad": 1,
     "precio": 4000,
     "img": "img/shortboca.jpg"
@@ -33,7 +30,6 @@
     "sku": 4,
     "categoria": "futbol",
     "nombre":"Short River Plate",
-    "talle":"L",
     "cantidad": 1,
     "precio": 3000,
     "img": "img/shortriver.jpg"
@@ -43,7 +39,6 @@
     "sku": 5,
     "categoria": "futbol",
     "nombre":"Campera River Plate",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/camperariver.jpg"
@@ -53,7 +48,6 @@
     "sku": 6,
     "categoria": "futbol",
     "nombre":"Campera Boca Juniors",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/camperaboca.jpg"
@@ -63,7 +57,6 @@
     "sku": 7,
     "categoria": "basket",
     "nombre":"Camiseta Curry",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/currycamiseta.jpg"
@@ -73,7 +66,6 @@
     "sku": 8,
     "categoria": "basket",
     "nombre":"Camiseta Jordan",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/jordan.jpg"
@@ -83,7 +75,6 @@
     "sku": 9,
     "categoria": "basket",
     "nombre":"Camiseta Rodman",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/rodman.jpg"
@@ -93,7 +84,6 @@
     "sku": 10,
     "categoria": "basket",
     "nombre":"Camiseta Bird",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/bird.png"
@@ -103,7 +93,6 @@
     "sku": 11,
     "categoria": "rugby",
     "nombre":"Camiseta Los Pumas",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/camisetapumas.jpg"
@@ -113,7 +102,6 @@
     "sku": 12,
     "categoria": "rugby",
     "nombre":"Camiseta All Blacks",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "img": "img/camisetanz.jpg"
@@ -123,7 +111,6 @@
     "sku": 13,
     "categoria": "rugby",
     "nombre":"Camiseta Inglaterra",
-    "talle":"L",
     "cantidad": 1,
     "precio": 8000,
     "imgNombre": "camisetainglaterra.jpg",

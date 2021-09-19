@@ -20,8 +20,6 @@ function mensaje(message, bg) {
 // FUNCION PARA CALCULAR TOTAL //
 function total() {
     const totalCompra = cart.map(items => items.precio * items.cantidad)
-    console.log(totalCompra)
-
     const final = totalCompra.reduce((a,b) => a + b )
     return final
 }
@@ -32,20 +30,6 @@ function guardarLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(cart))
 }
 
-function filtros(){
-    $('#products').append(`
-                <aside>
-                <div> Ordenar/Filtrar
-                <select class="form-control-lg mb-5">
-                <option>A-Z</option>
-                <option>Por Precio mas Bajo</option>
-                <option>Mas Vendidas</option>
-                </select>
-                </div>
-                
-                </aside>
-                `)
-}
 
 function subtotal(){
     $("#subtotal").empty()
@@ -65,5 +49,6 @@ function subtotal(){
 
 
 
-export{ mensaje, total, guardarLocalStorage, filtros, subtotal} 
+
+export{ mensaje, total, guardarLocalStorage, subtotal} 
 

@@ -1,4 +1,5 @@
 import { cart } from "./main.js";
+import { total } from "./funciones.js";
 
 
 for (const prod of cart) {
@@ -14,9 +15,16 @@ for (const prod of cart) {
         `
 )
 }
+  $('#cuadroResumen').append(
+    `Total de compra: $${total()}`
+  )
+
 $('.datosPersonales').hide()
 $('.formaPago').hide()
 $('.datosTranferencia').hide()
+$('.pagoTarjeta').hide()
+
+let correo = ""
 
 // CLICK CONTINUAR, SE DESPLEGA FORMULARIO DE DATOS SOLO SI SE INTRODUCE MAIL//
 $('#correo__continuar').click(()=>{
@@ -26,9 +34,11 @@ $('#correo__continuar').click(()=>{
 }
   else{
     $('.datosPersonales').slideDown()
+    correo = $("#correo").val()
   }
 
 })
+
 
 $('#errorNombre').hide()
 $('#errorApellido').hide()
@@ -36,6 +46,7 @@ $('#errorDni').hide()
 $('#errorDireccion').hide()
 $('#errorCiudad').hide()
 
+//CLICK EN SIGUIENTE, VALIDA CAMPOS LLENOS//
 
 $('.siguiente').click(()=>{
 
@@ -76,17 +87,74 @@ if(($('#nombre').val() != "") && ($('#apellido').val() != "") && ($('#dni').val(
 
 $('#tranferencia').click(()=>{
   $('.datosTranferencia').slideDown()
+  $('.pagoTarjeta').hide()
   $('.tranferenciaOk').click(()=>{
     $('#resumenCompra').empty()
     $('#resumenCompra').append(
       `<h1>GRACIAS POR COMPRAR EN RAGNAR STORE</h1>
+      <p><strong>Ahora el pedido se encuentra en proceso de validación.</strong></p>
+      <p>Te informamos que la validación de los pedidos puede tardar hasta 24hs en realizarse.</p>
+      <p>Una vez confirmado el pago, te enviaremos un mail a ${correo}</p>
+      <a class="btn btn-dark" id="home" href="index.html">Volver a la Tienda</a>
+      `
+    )
+    localStorage.clear()
+    cart = []
+  })
+})
+
+$('#tarjetaCredito').click(()=>{
+  $('.datosTranferencia').hide()
+  $('.pagoTarjeta').slideDown()
+
+})
+$('#errorNroTarjeta').hide()
+$('#errorCvv').hide()
+$('#errorNombreTarjeta').hide()
+$('#errorVencimiento').hide()
+
+$('#tarjetaOk').click(()=>{
+
+  if($('#nroTarjeta').val() == ""){
+    $('#errorNroTarjeta').slideDown()
+  }else{
+    $('#errorNroTarjeta').slideUp()
+  }
+  if($('#cvv').val() == ""){
+    $('#errorCvv').slideDown()
+  }else{
+    $('#errorCvv').slideUp()
+  }
+  if($('#nombreTarjeta').val() == ""){
+    $('#errorNombreTarjeta').slideDown()
+  }else{
+    $('#errorNombreTarjeta').slideUp()
+  }
+  if($('#vencimiento').val() == ""){
+    $('#errorVencimiento').slideDown()
+  }else{
+    $('#errorVencimiento').slideUp()
+  }
+
+  if(($('#nroTarjeta').val() != "") && ($('#cvv').val() != "") && ($('#nombreTarjeta').val() != "") &&  ($('#vencimiento').val() != "")){
+
+    $('#resumenCompra').empty()
+    $('#resumenCompra').append(
+      `<h1>GRACIAS POR COMPRAR EN RAGNAR STORE</h1>
+      <p><strong>Ahora el pedido se encuentra en proceso de validación.</strong></p>
+      <p>Te informamos que la validación de los pedidos puede tardar hasta 24hs en realizarse.</p>
+      <p>Una vez confirmado el pago, te enviaremos un mail a ${correo}</p>
       <a class="btn btn-dark" id="home" href="index.html">Volver a la Tienda</a>
       `
     )
     localStorage.clear()
         cart = []
-  })
+
+  }
+
+
 })
+
 
 
 

@@ -17,6 +17,33 @@
       padding: 20px;
       border-bottom: 1px solid rgba(0, 128, 0, 0.788);
       background-color: rgba(0, 128, 0, 0.215);
+      #contador{
+         transition: 1s;
+         z-index: 1;
+         width: 20px;
+         height: 20px;
+         border-radius: 100%;
+         background-color: red;
+         color: white;
+         text-align: center;
+         font-size: 15px;
+         position: absolute;
+         top: 30px;
+         right: 25px;
+      }
+   }
+   #contador{
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      background-color: red;
+      color: white;
+      text-align: center;
+      font-size: 15px;
+      position: absolute;
+      top: 20px;
+      right: 15px;
    }
 
 }
@@ -25,44 +52,38 @@
 .qtycentrada{
    text-align: center;
 }
-/* The Modal (background) */
 .modal {
-   display: none; /* Hidden by default */
-   position: fixed; /* Stay in place */
-   z-index: 1; /* Sit on top */
-/*    left: 0;
-   top: 0; */
-   width: 100%; /* Full width */
-   height: 100%; /* Full height */
-   overflow: auto; /* Enable scroll if needed */
-   background-color: rgb(0,0,0); /* Fallback color */
-   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+   display: none;
+   position: fixed;
+   z-index: 1;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgb(0,0,0);
+   background-color: rgba(0,0,0,0.4);
  }
 #myBtn{
-   /* background-color: rgba(0, 128, 0, 0.556); */
-   font-size: 20px;
- /*   text-transform: uppercase; */
-   
+   font-size: 15px;
    padding: 5px;
    margin-left: 10px;
    &:hover{
-      
       color: green;
       border-bottom: 4px solid black;
       cursor: pointer;
-      
    }
 
-
    }
 
- /* Modal Content/Box */
+.card-title{
+   font-size: 15px;
+}
+
  .modal-content {
    background-color: #fefefe;
-   margin: 15% auto; /* 15% from the top and centered */
+   margin: 15% auto;
    padding: 20px;
    border: 1px solid #888;
-   width: 80%; /* Could be more or less, depending on screen size */
+   width: 80%;
    .modalTitulo{
       text-align: center;
    }
@@ -70,15 +91,7 @@
  .container{
     text-align: center;
  }
-#carritoLleno{
-   visibility: hidden;
 
-}
-#carritoVacio{
-   visibility: visible;
-   text-align: center;
-}
- /* The Close Button */
  .close {
    color: #aaa;
    float: right;
@@ -97,6 +110,9 @@
    text-align: center;
    margin-bottom: 100px;
    margin-top: 100px;
+}
+#items{
+   font-size: 15px;
 }
 
 .categorias{
@@ -264,12 +280,6 @@
    .datosPersonales{
       margin-top: 40px;
 
-      .errorFormulario{
-         color: red;
-         text-align: left;
-         font-size: 10px;
-      }
-
    }
    .datosPersonales__titulo{
       text-align: left;
@@ -292,8 +302,12 @@
    }
 
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.errorFormulario{
+   color: red;
+   text-align: left;
+   font-size: 10px;
+}
+
+#tarjetaOk{
+   margin-top: 10px;
 }

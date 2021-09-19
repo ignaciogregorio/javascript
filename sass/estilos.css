@@ -23,36 +23,53 @@
   background-color: rgba(0, 128, 0, 0.215);
 }
 
+.navbar:hover #contador {
+  -webkit-transition: 1s;
+  transition: 1s;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  font-size: 15px;
+  position: absolute;
+  top: 30px;
+  right: 25px;
+}
+
+.navbar #contador {
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  font-size: 15px;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+}
+
 .qtycentrada {
   text-align: center;
 }
 
-/* The Modal (background) */
 .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
-  /*    left: 0;
-   top: 0; */
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
 
 #myBtn {
-  /* background-color: rgba(0, 128, 0, 0.556); */
-  font-size: 20px;
-  /*   text-transform: uppercase; */
+  font-size: 15px;
   padding: 5px;
   margin-left: 10px;
 }
@@ -63,15 +80,16 @@
   cursor: pointer;
 }
 
-/* Modal Content/Box */
+.card-title {
+  font-size: 15px;
+}
+
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
-  /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  /* Could be more or less, depending on screen size */
 }
 
 .modal-content .modalTitulo {
@@ -82,16 +100,6 @@
   text-align: center;
 }
 
-#carritoLleno {
-  visibility: hidden;
-}
-
-#carritoVacio {
-  visibility: visible;
-  text-align: center;
-}
-
-/* The Close Button */
 .close {
   color: #aaa;
   float: right;
@@ -111,6 +119,10 @@
   text-align: center;
   margin-bottom: 100px;
   margin-top: 100px;
+}
+
+#items {
+  font-size: 15px;
 }
 
 .categorias {
@@ -292,12 +304,6 @@
   margin-top: 40px;
 }
 
-#resumenCompra .datosPersonales .errorFormulario {
-  color: red;
-  text-align: left;
-  font-size: 10px;
-}
-
 #resumenCompra .datosPersonales__titulo {
   text-align: left;
   text-decoration: underline;
@@ -324,9 +330,13 @@
   text-align: center;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.errorFormulario {
+  color: red;
+  text-align: left;
+  font-size: 10px;
+}
+
+#tarjetaOk {
+  margin-top: 10px;
 }
 /*# sourceMappingURL=estilos.css.map */
